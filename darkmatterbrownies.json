@@ -1,0 +1,43 @@
+{
+  "title": "Black Hole Brownies",
+  "description": "A dessert so dense, it generates its own gravitational field. Handle with care.",
+  "ingredients": [
+    {
+      "amount": 3,
+      "unit": "kg",
+      "ingredient": "dark matter",
+      "note": "freshly collapsed"
+    },
+    {
+      "amount": 1,
+      "unit": "singularity",
+      "ingredient": "cocoa"
+    },
+    {
+      "amount": "n",
+      "unit": "self-similarity",
+      "ingredient": "fractal nightmares",
+      "note": "where n ≥ ∞"
+    }
+  ],
+  "steps": {
+    "preheat": "Heat the universe to 10^32 K",
+    "mix": {
+      "action": "Stir until spacetime curvature forms swirls",
+      "tip": "Use clockwise rotation to avoid anticausal effects"
+    },
+    "bake": {
+      "duration": "12 aeons",
+      "note": "Check periodically for quantum tunneling"
+    },
+    "expand": "Watch as the recipe grows in complexity"
+  },
+  "nutrition": {
+    "calories": "≈∞ kcal",
+    "macronutrients": {
+      "carbs": "42g",
+      "protein": "0g (it's theoretical)",
+      "fat": "∞g (dark energy infused)"
+    }
+  }
+}

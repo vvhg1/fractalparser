@@ -50,7 +50,7 @@ class FractalParser:
     #   """
 
     # WARNING: Here be dragons! This descent would make Escher blush and Mandelbrot smile.
-    # DO NOT TOUCH - It's on the slightly complex side...
+    # DO NOT TOUCH - It's slightly complex - and a bit cursed.
     # Not spaghetti, fractal lasagna.
     # Pro: It works. Despite - not because!
 
@@ -160,6 +160,10 @@ class FractalParser:
                                 ignore_empty_list,
                             )
                         )
+                    if "append" in new_rules:
+                        # strip newlines from the end of the string
+                        md_parts[-1] = md_parts[-1].rstrip("\n")
+                        md_parts.append(new_rules["append"])
                     if "separator" in new_rules:
                         if new_rules["separator"] is True:
                             if (
@@ -172,8 +176,6 @@ class FractalParser:
                             md_parts.append(new_rules["separator"])
                     if "newlines" in new_rules:
                         md_parts.append("\n" * new_rules["newlines"])
-                    if "append" in new_rules:
-                        md_parts.append(new_rules["append"])
                 else:
                     if "newlines" in rules:
                         md_parts.append("\n" * rules["newlines"])
@@ -228,66 +230,72 @@ class FractalParser:
 
 
 if __name__ == "__main__":
-    input_file = "input.json"
+    input_file = "darkmatterbrownies.json"
 
     list_of_keys = """
-    - key: meta_title
-      addlevel: -1
-      header: true
-    - key: meta_description
-      append: "\\n"
-    - key: ingredients
-      header: true
+- key: title
+  header: true
+  addlevel: -1  # Force top-level header
+  newlines: 1
+
+- key: description
+  append: "\n\n"
+
+- key: ingredients
+  header: true
+  prepend: "## "
+  children:
+    - enumerate: true
+    - key: amount
+      prepend: "**"
+      append: "** "
+    - key: unit
+      append: " of "
+    - key: ingredient
+    - key: note
+      prepend: " ("
+      append: ")"
+      separator: "\n"
+  separator: "\n\n"
+
+- key: steps
+  header: true
+  children:
+    - key: preheat
+      prepend: "🔥 "
+    - key: mix
       children:
-        - islist: true
-        # - enumerate: true
-        - key: amount
-        - key: unit
-        - key: ingredient
-        - key: appendix
-        # - newlines: 1
-        # - separator: true # this adds a separator after each child
-      insert: "\\nthis is an insert\\n"
-      append: "\\nthis is an append\\n"
-      # prepend: "\\nthis is a prepend\\n"
-    - key: equipment
-      header: true
+        - key: action
+          prepend: "🌀 **Mixing:** "
+        - key: tip
+          prepend: "\n   💡 "
+      separator: "\n"
+    - key: bake
       children:
-        - key: text
-        - key: equipment
-          children:
-            - key: title
-          insert: "\\n"
-    - key: preparation
-      header: true
+        - key: duration
+          prepend: "⏳ **Bake:** "
+        - key: note
+          prepend: "\n NOTE: "
+      separator: "\n"
+    - key: expand
+      prepend: "📈 "
+  newlines: 2
+
+- key: nutrition
+  header: true
+  children:
+    - key: calories
+      prepend: "📊 "
+    - key: macronutrients
+      prepend: "**Macronutrients:**\n\n"
       children:
-        - key: text
-          separator: true
-    - key: category
-      header: true
-      children:
-        - key: title
-      newlines: 2
-    - key: difficulty
-      printkey: true # as difficulty is none, this will only be printed if ignore_none is set to False
-    - key: preparation_time
-      prepend: "\\n## Stats\\n"
-      printkey: true
-    - key: cooking_time
-      printkey: true
-    - key: waiting_time
-      printkey: true
-    - key: kcal
-      printkey: true
-    - key: carbs
-      printkey: true
-    - key: fat
-      printkey: true
-    - key: protein
-      printkey: true
-    - key: servings
-      printkey: true
-    """
+        - key: carbs
+          printkey: true
+        - key: protein
+          printkey: true
+        - key: fat
+          printkey: true
+"""
 
     with open(input_file, "r") as f:
         json_data = json.load(f)
@@ -301,5 +309,6 @@ if __name__ == "__main__":
         ignore_list=False,
     )
     parsed_data = "".join([str(elem) for elem in parsed_data])
+    print("henlo")
     with open("output.md", "w") as f:
         f.write(parsed_data)

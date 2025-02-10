@@ -91,7 +91,9 @@ A YAML list of instructions to bend the parser to your will. Each key is a direc
       "fat": "∞g (dark energy infused)"
     }
   }
-}```
+}
+```
+
 **YAML Spell (list_of_keys)**
 
 ```yaml
@@ -158,7 +160,7 @@ A YAML list of instructions to bend the parser to your will. Each key is a direc
         - key: fat
           printkey: true
 ```
-Output Markdown
+## Output Markdown
 
 ```markdown
 # Black Hole Brownies
@@ -205,13 +207,13 @@ fat: ∞g (dark energy infused)
 
 ## Error Handling
 
-    Invalid YAML: Fails loudly with a ValueError (to assert dominance).
-    Unexpected YAML Structure: Raises a ValueError (to maintain order).
-    Missing Keys: Logs a warning but proceeds (like a forgiving deity).
+Invalid YAML: Fails loudly with a ValueError (to assert dominance).
+Unexpected YAML Structure: Raises a ValueError (to maintain order).
+Missing Keys: Logs a warning but proceeds (like a forgiving deity).
 
 ## Installation & Usage
 
-    Summon Dependencies:
+Summon Dependencies:
 `pip install PyYAML`
 
 ## Basic Invocation:
@@ -240,14 +242,12 @@ with open("output.md", "w") as f:
 ```
 
 ## Debugging:
-    DON'T.
-    If you must, enable logging:
+DON'T.
+If you must, enable logging:
 
     import logging  
     logging.basicConfig(level=logging.DEBUG)  # Reveal the parser's secrets  
 
-    import logging  
-    logging.basicConfig(level=logging.DEBUG)  # Reveal the parser's secrets  
 
 ## FAQ (Frequently Arcanely Queried)
 

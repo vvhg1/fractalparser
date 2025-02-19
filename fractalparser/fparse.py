@@ -309,6 +309,5 @@ if __name__ == "__main__":
         ignore_list=False,
     )
     parsed_data = "".join([str(elem) for elem in parsed_data])
-    print("henlo")
     with open("output.md", "w") as f:
         f.write(parsed_data)

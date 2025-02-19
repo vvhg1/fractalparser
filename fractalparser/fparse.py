@@ -219,7 +219,7 @@ class FractalParser:
             raise ValueError(
                 f"\033[91mERROR: Could not load list_of_keys: {e}\033[0m\n"
             )
-        return FractalParser._parse(
+        parsed_data = FractalParser._parse(
             json_data,
             list_of_keys,
             level,
@@ -227,6 +227,7 @@ class FractalParser:
             ignore_empty_list,
             ignore_list,
         )
+        return "".join([str(elem) for elem in parsed_data])
 
 
 if __name__ == "__main__":
@@ -308,6 +309,5 @@ if __name__ == "__main__":
         ignore_empty_list=True,
         ignore_list=False,
     )
-    parsed_data = "".join([str(elem) for elem in parsed_data])
     with open("output.md", "w") as f:
         f.write(parsed_data)
